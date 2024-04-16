@@ -25,7 +25,8 @@
                     <div @click="clickFilename(scope.row)" class="file-name-content">
                         <i :class="getFileFontElement(scope.row.fileType)"
                            style="margin-right: 15px; font-size: 20px; cursor: pointer;"/>
-                        <span style="cursor:pointer;">{{ scope.row.filename }}</span>
+                        <span style="cursor:pointer;">{{ scope.row.filename.length < 35 ? scope.row.filename 
+                        : scope.row.filename.split('.')[0].substring(0,30) + '···' + '.'+scope.row.filename.split('.')[1]}}</span>
                     </div>
                     <div class="file-operation-content">
                         <el-tooltip class="item" effect="light" content="下载" placement="top">
@@ -56,7 +57,7 @@
                 min-width="120"
                 align="center">
                 <template #default="scope">
-                    <el-link @click="goInFolder(scope.row.parentId)" type="primary">{{ scope.row.parentFilename }}
+                    <el-link @click="goInFolder(scope.row.parentId)" type="primary">{{ scope.row.parentFilename}} 
                     </el-link>
                 </template>
             </el-table-column>

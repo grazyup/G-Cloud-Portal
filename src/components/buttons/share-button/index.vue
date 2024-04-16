@@ -47,7 +47,7 @@
                              status-icon
                              @submit.native.prevent>
                         <el-form-item label="分享链接" prop="shareUrl">
-                            <el-link :underline=false type="primary"><span>{{ shareResultForm.shareUrl }}</span>
+                            <el-link :underline=false type="primary"><span>{{ showShareUrl.showUrl }}</span>
                             </el-link>
                         </el-form-item>
                         <el-form-item label="提取码">
@@ -114,6 +114,10 @@ const shareResultForm = reactive({
     shareCode: ''
 })
 
+const showShareUrl = reactive({
+    showUrl:''
+})
+
 const shareFileRules = reactive({
     shareName: [
         {required: true, message: '请输入分享名称', trigger: 'blur'}
@@ -165,6 +169,9 @@ const doShareFile = async () => {
             }, res => {
                 loading.value = false
                 shareTitle.value = '恭喜你！分享成功！'
+                if(res.data.shareUrl.length > 35){
+                    showShareUrl.showUrl = res.data.shareUrl.substring(0,35) + "..."
+                }
                 shareResultForm.shareUrl = res.data.shareUrl
                 shareResultForm.shareCode = res.data.shareCode
                 step.value = 2
