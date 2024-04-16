@@ -136,8 +136,8 @@ let panUtil = {
         return this.getUrlPrefix() + '/file/preview?fileId=' + this.handleId(fileId) + '&authorization=' + getToken()
     },
     getUrlPrefix() {
-        return 'http://127.0.0.1:8888'
-        // return 'http://8.134.249.69:8082'
+        // return 'http://127.0.0.1:8888'
+        return 'http://8.134.249.69:8888'
     },
     getChunkSize() {
         if (this.getChunkUploadSwitch()) {
